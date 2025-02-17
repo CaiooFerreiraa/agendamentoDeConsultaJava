@@ -18,6 +18,10 @@ public class Doctor implements Serializable{
     blockTimes = new ArrayList<LocalDateTime>();
   }
 
+  public Doctor(String cm) {
+    this.cm = cm;
+  }
+
   public String getName() {
     return this.name;
   }
@@ -47,6 +51,16 @@ public class Doctor implements Serializable{
 
   public boolean addAvaliableTime(LocalDateTime hour) {
     return avaliableTimes.add(hour);
+  }
+
+  public void printHours() {
+    for (int i = 0; i < avaliableTimes.size(); i++) {
+      System.out.println(avaliableTimes.get(i));
+    }
+  }
+
+  public ArrayList<LocalDateTime> getHours() {
+    return avaliableTimes;
   }
 
   @Override

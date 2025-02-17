@@ -51,7 +51,31 @@ public class Consultation implements Serializable {
     } catch (IOException e) {
       e.printStackTrace();
     }
-  } 
+  }
+  
+  public LocalDateTime getDateHour() {
+    return dateHour;
+  }
+
+  public Doctor getDoctor() {
+    return doctor;
+  }
+
+  public String getNotes() {
+    return notes;
+  }
+
+  public Patient getPatient() {
+    return patient;
+  }
+
+  public String getReason() {
+    return reason;
+  }
+
+  public String getStatus() {
+    return status;
+  }
 
   @Override
   public String toString() {

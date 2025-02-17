@@ -14,30 +14,53 @@
     <h1>Lista de Consultas</h1>
 
     <div class="container">
-        <% appointments.forEach((consulta, index) => { %>
+        <% consultas.forEach((consulta, index) => { %>
             <div class="appo">
                 <h2>Consulta <%= index + 1 %></h2>
 
                 <!-- Informações do Médico -->
-                <p><strong>Médico:</strong> <%= consulta.doctorName %> (<%= consulta.doctorSpecialty %>)</p>
-                <p><strong>E-mail do Médico:</strong> <%= consulta.doctorEmail %></p>
-                <p><strong>CRM:</strong> <%= consulta.doctorCm %></p>
+                <p><strong>Médico:</strong> <%= consulta.doctor.name %> (<%= consulta.doctor.specialty %>)</p>
+                <p><strong>E-mail do Médico:</strong> <%= consulta.doctor.email %></p>
+                <p><strong>CRM:</strong> <%= consulta.doctor.cm %></p>
 
                 <!-- Informações do Paciente -->
-                <p><strong>Paciente:</strong> <%= consulta.patientName %> (<%= consulta.patientCpf %>)</p>
-                <p><strong>E-mail do Paciente:</strong> <%= consulta.patientEmail %></p>
-                <p><strong>Idade:</strong> <%= consulta.patientAge %> anos</p>
+                <p><strong>Paciente:</strong> <%= consulta.patient.name %> (<%= consulta.patient.cpf %>)</p>
+                <p><strong>E-mail do Paciente:</strong> <%= consulta.patient.email %></p>
+                <p><strong>Idade:</strong> <%= consulta.patient.age %> anos</p>
 
                 <!-- Informações da Consulta -->
-                <p><strong>Data e Hora:</strong> <%= consulta.dateHour %></p>
+                <p id="<%= consulta.dateHour %>" name="hour"><strong>Data e Hora:</strong> <%= consulta.dateHour %></p>
                 <p><strong>Motivo:</strong> <%= consulta.reason %></p>
                 <p><strong>Notas:</strong> <%= consulta.notes ? consulta.notes : "Sem notas adicionais" %></p>
                 <p><strong>Status:</strong> <%= consulta.status %></p>
 
                 <hr>
+                <button>Cancelar Consulta</button>
+                <button>Reagendar Consulta</button>
             </div>
         <% }) %>
     </div>
 </main>
+<script>
+    document.addEventListener("click", async (e) => {
+        if (e.target.innerHTML == "Cancelar Consulta") {
+            const test = document.getElementsByName("hour")[0];
+            e.target.parentNode.style.display = "none"
+
+            const resp = await fetch("/cancelar", {
+                method: 'post',
+                headers: {
+                    'Content-Type': "application/json"
+                },
+                body: JSON.stringify(test.id)
+            })
+
+            const respos = await resp.json();
+
+            window.reload()
+        }
+    })
+
+</script>
 
 <%- include('include/footer') %>

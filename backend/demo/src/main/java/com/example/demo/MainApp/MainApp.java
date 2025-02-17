@@ -10,6 +10,10 @@ import java.util.StringTokenizer;
 
 public class MainApp {
   private static RegisterPatient controllerPatient = new RegisterPatient();
+
+  public static void main(String[] args) {
+    
+  }
   //Registra consultas com string direta;
   static void registarConsulta(String c) {
     try {

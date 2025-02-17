@@ -6,7 +6,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class RegisterDoctor {
-  String routeFile = "C:/Users/cs191/Documents/Projetos/agenda-de-consultas - Copia/backend/demo/src/main/resources/Data/medicos.txt";
+  String routeFile = "C:/Users/cs191/Documents/Projetos/agenda-de-consultas-lp2/backend/demo/src/main/resources/Data/medicos.txt";
 
   public void saveToFile(ArrayList<Doctor> array) throws ClassNotFoundException {
     try {
@@ -16,7 +16,7 @@ public class RegisterDoctor {
 
       objInput.close();
     } catch (IOException e) {
-      System.out.println("Arquivo não existe");
+      System.out.println("Sem dados para a leitura");
     }
   }
 }

@@ -1,20 +1,23 @@
 package com.example.demo.User;
 
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Objects;
 
+import com.example.demo.MainApp.Consultation;
 import com.example.demo.MainApp.Doctor;
-import com.example.demo.MainApp.Patient;
 
 public class User {
     private String name, cpf, email, password;
     private int age;
-    private Doctor doctor;
-    private Patient patient;
+    private String doctor;
     private String status;
-    private LocalDateTime date;
+    private String time;
     private String reason;
     private String notes;
+    private String indenfier;
+    private String speciality;
+    ArrayList<Consultation> array;
+    Doctor d1;
 
     public User() {
 
@@ -28,13 +31,16 @@ public class User {
         this.age = age;
     }
 
-    public User(Doctor doctor, Patient patient, String status, LocalDateTime date, String reason, String notes) {
-        this.doctor = doctor;
-        this.patient = patient;
-        this.status = status;
-        this.date = date;
-        this.reason = reason;
-        this.notes = notes;
+    public User(String specialty, String doctor, String time, String reason, String notes, String name, String email, int age, String cpf) {
+      this.speciality = specialty;
+      this.doctor = doctor;
+      this.time = time;
+      this.reason = reason;
+      this.notes = notes;
+      this.name = name;
+      this.email = email;
+      this.age = age;
+      this.cpf = cpf;
     }
 
     public User(String indentifier, String password) {
@@ -42,16 +48,28 @@ public class User {
       this. password = password;
     }
 
+    public User(String indenfier) {
+      this.indenfier = indenfier;
+    }
+
     public int getAge() {
       return age;
+    }
+
+    public String getSpeciality() {
+      return speciality;
+    }
+
+    public String getIndenfier() {
+      return indenfier;
     }
 
     public String getStatus() {
       return status;
     }
 
-    public LocalDateTime getDate() {
-        return date;
+    public String getTime() {
+        return time;
     }
 
     public String getReason() {
@@ -78,12 +96,8 @@ public class User {
       return password;
     }
 
-    public Doctor getDoctor() {
+    public String getDoctor() {
       return this.doctor;
-    }
-
-    public Patient getPatient() {
-      return patient;
     }
 
     //Para permitir que apenas um usuário seja cadastrado

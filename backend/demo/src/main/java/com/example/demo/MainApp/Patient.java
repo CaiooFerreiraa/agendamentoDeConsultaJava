@@ -1,12 +1,16 @@
 package com.example.demo.MainApp;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class Patient implements Serializable {
     private String name;
     private String cpf;
     private String email;
     private int age;
+    @JsonIgnore // Isso impede que a lista seja serializada, evitando a recursão infinita
     private ArrayList<Consultation> historyConsultations;
 
     public Patient(String name, String cpf, String email, int age) {
@@ -43,20 +47,25 @@ public class Patient implements Serializable {
     }
 
     public Consultation[] getHistoryConsultations() {
-      Consultation[] history = new Consultation[historyConsultations.size()];
+      Consultation [] consult = new Consultation[historyConsultations.size()];
 
-      for (int i = 0; i < historyConsultations.size(); i++) {
-          Consultation objConsultation = historyConsultations.get(i);
-          if (objConsultation != null) {
-              history[i] = objConsultation;
-          }
+      for (int i = 0; i < consult.length; i++) {
+        consult[i] = historyConsultations.get(i);
       }
 
-      return history;
+      return consult;
   }
 
-  public void cancelarConsulta(Consultation c) {
-    historyConsultations.remove(c);
+  public boolean cancelarConsulta(LocalDateTime c) {
+    
+    for (Consultation consultation : historyConsultations) {
+      if (consultation.getDateHour().equals(c)) {
+        historyConsultations.remove(consultation);
+        return true;
+      }
+    }
+
+    return false;
   }
 
   public void reagendarConsulta(Consultation c) {

@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class RegisterPatient {
   private static Map<String, Patient> map = new HashMap<>();
-  private static String routeFile = "C:/Users/cs191/Documents/Projetos/agenda-de-consultas - Copia/backend/demo/src/main/resources/Data/pacientes.txt";
+  private static String routeFile = "C:\\Users\\cs191\\Documents\\Projetos\\agenda-de-consultas-lp2\\backend\\demo\\src\\main\\resources\\Data\\pacientes.txt";
 
   public boolean register(Patient pat) {
     if (map.containsKey(pat.getCpf())) {
@@ -43,7 +43,7 @@ public class RegisterPatient {
 
       objReader.close();
     } catch (IOException | ClassNotFoundException e) {
-      System.out.println("Não existe arquivo");;
+      System.out.println("Sem dados para leitura");
     }
   }
 

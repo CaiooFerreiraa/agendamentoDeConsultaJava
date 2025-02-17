@@ -44,8 +44,11 @@ router.get('/patient', userRequired, patientController.index);
 
 //Routes Make Appointment
 router.get('/make-appointment', userRequired, consultationController.index);
-router.post('/peek', userRequired, consultationController.peekHoursTheDoctor);
+router.post('/peek', consultationController.peekHoursTheDoctor);
 router.post('/make-appointment', userRequired, consultationController.marked);
+router.post("/selectSpecialty", consultationController.selectSpecialty);
+router.get("/allDoctors", consultationController.allDoctors);
+router.post("/cancelar", consultationController.cancelar);
 
 //Routes My appointments
 router.get('/my-appointment', userRequired, consultationController.myAppointment);
