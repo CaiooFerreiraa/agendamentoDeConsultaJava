@@ -26,7 +26,7 @@ import jakarta.annotation.PostConstruct;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = {"http://192.168.1.151:8080"})
+@CrossOrigin(origins = {"http://192.168.1.154:8080"})
 public class MyApiController {
   static UserRegister controllerUser = new UserRegister();
   static RegisterPatient controllerPatient = new RegisterPatient();
@@ -36,6 +36,7 @@ public class MyApiController {
   @PostConstruct
   public void init() throws ClassNotFoundException {
     MainApp.lerDados();
+    controllerUser.readeToFile();
     Doctor d1 = new Doctor("Caio Ferreira Almeida", "Cardiologista", "1234", "cs1919328@gmail.com");
     Doctor d2 = new Doctor("Ana Souza", "Cardiologista", "5678", "ana@gmail.com");
     
@@ -89,7 +90,11 @@ public class MyApiController {
 
     controllerPatient.register(p1);
   
-    return controllerUser.register(user);
+    if (controllerUser.register(user)) {
+      controllerUser.saveToFile();
+      return true;
+    }
+    return false;
   }
 
   @PostMapping("/specialty")
@@ -126,6 +131,9 @@ public class MyApiController {
   @PostMapping("/login")
   public ResponseEntity<?> login(@RequestBody User u) {
     User user = new User(u.getCpf(), u.getPassword());
+
+    System.out.println(u.getIndenfier());
+    System.out.println(u.getPassword());
 
     if (controllerUser.checkUser(user)) {
         // Usuário autenticado com sucesso

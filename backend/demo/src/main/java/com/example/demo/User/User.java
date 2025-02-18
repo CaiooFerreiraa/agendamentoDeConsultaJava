@@ -1,12 +1,13 @@
 package com.example.demo.User;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 
 import com.example.demo.MainApp.Consultation;
 import com.example.demo.MainApp.Doctor;
 
-public class User {
+public class User implements Serializable {
     private String name, cpf, email, password;
     private int age;
     private String doctor;
@@ -23,7 +24,7 @@ public class User {
 
     }
 
-    public User(String name, String cpf, String email, String password, int age) {
+    public User(String name, String cpf, String email, String password, int age)  {
         this.name = name;
         this.cpf = cpf;
         this.email = email;
