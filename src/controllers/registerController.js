@@ -10,7 +10,7 @@ const register = async (req, res) => {
 
         /**
          * Cria o cadastro do usuário
-         * @param {Object} data = Dados do usuário a ser registrado
+         * @param {Object} data = Dados do usuário a ser registrado Nome, cpf, email, idade e senha do usuário
          * @returns {boolean} true/false = Indicando se o cadastro foi realizado
          */
 
